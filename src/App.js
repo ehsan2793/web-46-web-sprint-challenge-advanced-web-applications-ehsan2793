@@ -13,7 +13,7 @@ function App(props) {
 
   const logOut = () => {
     axiosWithAuth()
-      .post('logout')
+      .post('/logout')
       .then(res => {
         localStorage.removeItem('token')
         window.location.href = '/'
