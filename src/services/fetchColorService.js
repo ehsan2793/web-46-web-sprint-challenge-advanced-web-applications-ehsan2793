@@ -7,7 +7,7 @@ const fetchColorService = () => {
         .catch(error => console.error(error))
 }
 
-export default fetchColorService;
+// export default fetchColorService;
 
 
 
