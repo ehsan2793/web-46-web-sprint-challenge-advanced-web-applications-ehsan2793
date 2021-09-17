@@ -12,7 +12,10 @@ function App() {
           Color Picker Sprint Challenge
           <a data-testid="logoutButton" href="#">logout</a>
         </header>
+        <Route exact path="/" component={Login} />
+        <Route path="/login" component={Login} />
       </div>
+
     </Router>
   );
 }
