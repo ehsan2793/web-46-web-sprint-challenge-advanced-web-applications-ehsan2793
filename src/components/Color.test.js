@@ -26,14 +26,14 @@ test("Renders the color passed into component", () => {
     expect(color).toBeInTheDocument
 });
 
-test("Executes handleDelete and toggleEdit property when the 'x' icon is clicked", () => {
+test("Executes handleDelete and toggleEdit property when the 'x' icon is clicked", async () => {
     const MockhandleDelete = jest.fn()
     const MocktoggleEdit = jest.fn()
     render(<Color color={colorTest} handleDelete={MockhandleDelete} toggleEdit={MocktoggleEdit} />)
 
-    // const x = screen.queryByTestId("delete");
+    const icon = screen.queryByTestId("delete");
 
-    // userEvent.click(x);
+    // userEvent.click(icon);
 
     // expect(MockhandleDelete.mock.calls).toHaveLength(1)
     // expect(MocktoggleEdit.mock.calls).toHaveLength(1)
