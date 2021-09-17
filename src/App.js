@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Switch, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 // import LogOut from './components/LogOut'
 import BubblePage from './components/BubblePage'
 import Login from "./components/Login";
@@ -7,17 +8,20 @@ import PrivateRoute from "./components/PrivateRoute";
 import axiosWithAuth from "./helpers/axiosWithAuth"
 import "./styles.scss";
 
-function App() {
-  const history = useHistory()
+function App(props) {
+
+
   const logOut = () => {
     axiosWithAuth()
       .post('logout')
       .then(res => {
         localStorage.removeItem('token')
-        history.push('/login')
+        window.location.href = '/'
+
 
       }
       ).catch(error => console.error(error))
+
   }
 
 
