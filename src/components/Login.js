@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const initalValue = {
@@ -6,6 +7,7 @@ const initalValue = {
 };
 const Login = () => {
   const [formValue, setFormValue] = useState(initalValue)
+  const [error, setError] = useState('')
   const handleChange = (event) => {
     const { name, value } = event.target
     setFormValue({
@@ -13,14 +15,28 @@ const Login = () => {
       [name]: value,
     })
   }
+
+
   const handleSubmit = (event) => {
     event.preventDefault()
+    if (formValue.username !== 'Lambda' && formValue.password !== 'School') {
+      setError('Username or Password not valid')
+    } else {
+      return axios.post('http://localhost:5000/api/login', formValue)
+        .then(response => {
+          console.log(response);
+          localStorage.setItem('toke', response.data.payload)
+        })
+        .catch(error => console.log(error));
+
+    }
+
   }
-  console.log(formValue);
+
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  const error = "";
+
   //replace with error state
 
   return (
@@ -32,13 +48,14 @@ const Login = () => {
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Username: </label>
-        <input onChange={handleChange} value={formValue.username} type="text" id="username" name="username" />
+        <input placeholder='username' onChange={handleChange} value={formValue.username} type="text" id="username" name="username" />
         <label htmlFor="password">Password: </label>
-        <input onChange={handleChange} value={formValue.password} type="password" id="password" name="password" />
+        <input placeholder='password' onChange={handleChange} value={formValue.password} type="password" id="password" name="password" />
         <button id="submit" type="submit" >Login</button>
       </form>
 
-      <p id="error" className="error">{error}</p>
+      {error ? <p id="error" className="error">{error}</p> : null}
+
     </div>
   );
 };
