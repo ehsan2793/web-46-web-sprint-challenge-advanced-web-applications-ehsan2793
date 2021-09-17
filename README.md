@@ -101,6 +101,7 @@ A token is a cryptic text that is issued by the server to the client when they e
 
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
 
+we use all 4 when interfacing with APIs and it all depends what we want to accomplish (see the data, update it, change or delete it)
 Create —> .POST 
 Read  —> .GET
 Update —> .PUT
