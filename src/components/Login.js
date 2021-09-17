@@ -5,7 +5,8 @@ const initalValue = {
   username: '',
   password: '',
 };
-const Login = () => {
+const Login = (props) => {
+  const { push } = props.history;
   const [formValue, setFormValue] = useState(initalValue)
   const [error, setError] = useState('')
   const handleChange = (event) => {
@@ -19,15 +20,18 @@ const Login = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    if (formValue.username !== 'Lambda' && formValue.password !== 'School') {
+    if (formValue.username !== 'Lambda' && formValue.password !== 'School') {  // if username and password dont match give error
       setError('Username or Password not valid')
-    } else {
+    } else {                                                      // else they match do axios call retrieve a token from the api
       return axios.post('http://localhost:5000/api/login', formValue)
         .then(response => {
-          console.log(response);
-          localStorage.setItem('toke', response.data.payload)
+          localStorage.setItem('token', response.data.payload)                /// sve the token in localStorage and push to BubblePage page 
+          push('/BubblePage')
+
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+          setError('it seems like there is a problem with server please be patient until we fix the server ')
+        });
 
     }
 
