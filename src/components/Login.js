@@ -25,12 +25,12 @@ const Login = (props) => {
     } else {                                                      // else they match do axios call retrieve a token from the api
       return axios.post('http://localhost:5000/api/login', formValue)
         .then(response => {
-          localStorage.setItem('token', response.data.payload)                /// sve the token in localStorage and push to BubblePage page 
+          localStorage.setItem('token', response.data.payload)                /// save the token in localStorage and push to BubblePage page 
           push('/BubblePage')
 
         })
         .catch(error => {
-          setError('it seems like there is a problem with server please be patient until we fix the server ')
+          setError('it seems like there is a problem with server please be patient until we fix the issue ') // incase of server issue
         });
 
     }
@@ -39,8 +39,6 @@ const Login = (props) => {
 
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
-
-
   //replace with error state
 
   return (
