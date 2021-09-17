@@ -23,6 +23,13 @@ const BubblePage = () => {
   //     setColors(response.data);
   //   })
   // },[])
+  // useEffect(() => {
+  //   console.log('should be', fetchColorService())
+
+
+
+  // }, [])
+
 
 
   const fetchColorService = () => {
